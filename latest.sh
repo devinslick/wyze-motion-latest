@@ -19,8 +19,10 @@
 alarmWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep ALARM_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
 videoWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep VIDEO_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
 
-for i in {1..200}; do
+n=0
+while [ "$n" -lt 60 ]; do
   #get newest available alarm jpg and mp4 video (inode and path)
+  n=$(( n + 1 ))
   pathNewestJPG=$(ls $(find /media/mmc/alarm/$(ls /media/mmc/alarm/ | tail -1)/ -name "*.jpg" -print | tail -1))
   pathNewestMP4=$(ls $(find /media/mmc/record/ -name "*.mp4" -print | tail -1))
   #read the last jpg filename from disk into a var
