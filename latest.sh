@@ -1,11 +1,10 @@
 #!/bin/sh
 
-# file below is /media/mmc/wz_mini/latest.sh
+# file below shoupd be installed to /media/mmc/wz_mini/latest.sh
+# after placing the file, be sure to make it executable:
+# chmod +x /media/mmc/wz_mini/latest.sh
 #
-# to install this, add this line:
-#* * * * * /bin/timeout 60 bash -c /media/mmc/wz_mini/latest.sh
-# to this file: /media/mmc/wz_mini/etc/cron/root
-#
+# On first execution it will install itself into cron as a job, replacing any other jobs there.  If you want to avoid this behavior, just add a line for the script in the cron file manually.
 #
 # To access the last events and videos use http://camera-address/latest.jpg and http://camera-address/latest.mp4
 #
@@ -18,6 +17,15 @@
 #import variables for webhook notifications to home assistant
 alarmWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep ALARM_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
 videoWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep VIDEO_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
+
+# install cron job if it doesnt exist already
+cronjobexists=$(cat /media/mmc/wz_mini/etc/cron/root | grep latest.sh | wc -l)
+if [ "$cronjobexists" == "1" ]; then
+    echo "Cron job already installed"
+else
+    echo "Installing cron job to /media/mmc/wz_mini/etc/cron/root"
+    echo '* * * * * /bin/timeout 60 bash -c /media/mmc/wz_mini/latest.sh' > /media/mmc/wz_mini/etc/cron/root
+fi
 
 n=0
 while [ "$n" -lt 60 ]; do
