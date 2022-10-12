@@ -3,7 +3,7 @@
 # file below is /media/mmc/wz_mini/latest.sh
 #
 # to install this, add this line:
-#* * * * * timeout 60 bash -c /media/mmc/wz_mini/latest.sh
+#* * * * * /bin/timeout 60 bash -c /media/mmc/wz_mini/latest.sh
 # to this file: /media/mmc/wz_mini/etc/cron/root
 #
 #
