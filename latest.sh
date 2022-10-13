@@ -15,8 +15,8 @@
 #VIDEO_WEBHOOK="https://subdomain.domain.com/api/webhook/my-secret-camera-alarm-url"
 
 #import variables for webhook notifications to home assistant
-alarmWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep ALARM_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
-videoWebhookURL=cat /media/mmc/wz_mini/wz_mini.conf | grep VIDEO_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g'
+alarmWebhookURL=$(cat /media/mmc/wz_mini/wz_mini.conf | grep ALARM_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g')
+videoWebhookURL=$(cat /media/mmc/wz_mini/wz_mini.conf | grep VIDEO_WEBHOOK | cut -d '=' -f 2 | sed 's/"//g')
 
 # install cron job if it doesnt exist already
 cronjobexists=$(cat /media/mmc/wz_mini/etc/cron/root | grep latest.sh | wc -l)
