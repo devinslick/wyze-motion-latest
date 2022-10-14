@@ -1,10 +1,12 @@
 #!/bin/sh
-
-# file below shoupd be installed to /media/mmc/wz_mini/latest.sh
-# after placing the file, be sure to make it executable:
-# chmod +x /media/mmc/wz_mini/latest.sh
+# You can use the following 3 lines to install this script.  On first execution it will run for 60 seconds unless interrupted.  
+# If you stop it then cron will have it continue running in the background.
+#  
+#   curl -kL https://raw.githubusercontent.com/devinslick/wyze-motion-latest/main/latest.sh > /media/mmc/wz_mini/latest.sh
+#   chmod +x /media/mmc/wz_mini/latest.sh
+#   /media/mmc/wz_mini/latest.sh
 #
-# On first execution it will install itself into cron as a job, replacing any other jobs there.  If you want to avoid this behavior, just add a line for the script in the cron file manually.
+#  If you do *not* want it running via the cronjob, just add a line for the script in the cron file manually.  Ex: '#lastest.sh'
 #
 # To access the last events and videos use http://camera-address/latest.jpg and http://camera-address/latest.mp4
 #
