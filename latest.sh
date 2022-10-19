@@ -57,7 +57,7 @@ while [ "$n" -lt 60 ]; do
       echo $pathNewestJPG > /media/mmc/wz_mini/lastMotionFileJPG
       if test ${alarmWebhookURL}
       then
-          echo "Triggering webhook for new mp4 video creation"
+          echo "Triggering webhook for new alarm JPG"
           curl -kX POST -H "Content-Type: application/json" -d '{ "path": "$pathNewestJPG" }' $alarmWebhookURL
       fi
   fi
