@@ -29,6 +29,11 @@ else
     echo '* * * * * /bin/timeout 60 bash -c /media/mmc/wz_mini/latest.sh' > /media/mmc/wz_mini/etc/cron/root
 fi
 
+if [ ! -d /media/mmc/alarm/ ]; then
+    echo "Waiting for first alarm event before script will be functional...";
+    exit
+fi
+
 n=0
 while [ "$n" -lt 60 ]; do
   #get newest available alarm jpg and mp4 video (inode and path)
